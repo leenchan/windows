@@ -12,5 +12,5 @@ jobs:
         cd n2n
         md build
         cd build
-        set "OPENSSL_CRYPTO_LIBRARY=C:\Program Files\Git\usr\bin\openssl.exe"
-        cmake ..
+        # set "OPENSSL_CRYPTO_LIBRARY=C:\Program Files\Git\usr\bin\openssl.exe"
+        cmake -OPENSSL_CRYPTO_LIBRARY=%OPENSSL_ROOT_DIR%\lib ..
