@@ -15,5 +15,6 @@ jobs:
         env
         netstat -a
         tasklist
+        7z
         # set "OPENSSL_CRYPTO_LIBRARY=C:\Program Files\Git\usr\bin\openssl.exe"
         # cmake -DOPENSSL_CRYPTO_LIBRARY=%OPENSSL_ROOT_DIR%\lib ..
