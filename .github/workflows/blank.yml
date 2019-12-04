@@ -7,4 +7,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: see if msbuild is installed
-      run: MSBuild.exe
+      run: |
+        git clone https://github.com/ntop/n2n.git
+        cd n2n
+        md build
+        cd build
+        cmake ..
