@@ -21,6 +21,8 @@ jobs:
     - name: main
       run: |
         ls C:\Users\runneradmin\scoop\apps\openssl\1.1.1d
+        set "OPENSSL_ROOT_DIR=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d"
+        set "OPENSSL_CRYPTO_LIBRARY=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d\lib"
         git clone https://github.com/ntop/n2n.git
         cd n2n
         md build
