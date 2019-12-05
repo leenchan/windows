@@ -32,3 +32,4 @@ jobs:
           scoop bucket add extras
           scoop install frp
           frpc -c frpc.ini
+          #
