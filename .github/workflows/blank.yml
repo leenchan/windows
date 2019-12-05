@@ -6,21 +6,20 @@ jobs:
   testStuffOut:
     runs-on: windows-latest
     steps:
-    - name: see if msbuild is installed
+    - name: install dependencies
       run: |
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
-        scoop
+        scoop install openssl frp
+    - name: check
+      run: |
+        env
+        tasklist
+        netstat -a
+    - name: main
+      run: |
         git clone https://github.com/ntop/n2n.git
         cd n2n
         md build
         cd build
-        env
-        netstat -a
-        tasklist
-        7z
-        wget -O frp.zip https://github.com/fatedier/frp/releases/download/v0.30.0/frp_0.30.0_windows_386.zip
-        7z e frp.zip
-        ls
-        # 
-        # cmake -DOPENSSL_CRYPTO_LIBRARY=%OPENSSL_ROOT_DIR%\lib ..
+        cmake ..
