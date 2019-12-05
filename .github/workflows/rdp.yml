@@ -9,6 +9,9 @@ jobs:
   start:
     runs-on: windows-latest
     steps:
+      - name: Set User
+        run: |
+          net user
       - name: Config
         run: |
           echo "[common]" >> frpc.ini
@@ -27,4 +30,4 @@ jobs:
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install frp
-          frpc -c frpc.ini
+          # frpc -c frpc.ini
