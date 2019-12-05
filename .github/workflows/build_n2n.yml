@@ -26,7 +26,7 @@ jobs:
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: main
-      env: |
+      env:
         N2N_VERSION: f9ade32788cf4728ee97b43dc59ded719ff418ac
       run: |
         git clone https://github.com/ntop/n2n.git
