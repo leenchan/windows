@@ -24,7 +24,6 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: main
       run: |
-        set "MSBUILD=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
         ls C:\Users\runneradmin\scoop\apps\openssl\1.1.1d
         git clone https://github.com/ntop/n2n.git
         cd n2n
@@ -33,3 +32,7 @@ jobs:
         cmake -D OPENSSL_ROOT_DIR=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d -D OPENSSL_CRYPTO_LIBRARY=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d\lib ..
         msbuild edge.vcxproj /t:Build /p:Configuration=Release
         msbuild supernode.vcxproj /t:Build /p:Configuration=Release
+    - uses: actions/upload-artifact@master
+      with:
+        name: Upload
+        path: D:\a\windows\windows\n2n\build\Release
