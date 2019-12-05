@@ -30,8 +30,8 @@ jobs:
         md build
         cd build
         cmake -D OPENSSL_ROOT_DIR=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d -D OPENSSL_CRYPTO_LIBRARY=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d\lib ..
-        msbuild edge.vcxproj /t:Build /p:Configuration=Release
-        msbuild supernode.vcxproj /t:Build /p:Configuration=Release
+        msbuild edge.vcxproj /t:Build /p:Configuration=Release /p:RuntimeLib=static_library
+        msbuild supernode.vcxproj /t:Build /p:Configuration=Release /p:RuntimeLib=static_library
         ls D:\a
     - uses: actions/upload-artifact@master
       with:
