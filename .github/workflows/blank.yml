@@ -16,5 +16,8 @@ jobs:
         netstat -a
         tasklist
         7z
-        # set "OPENSSL_CRYPTO_LIBRARY=C:\Program Files\Git\usr\bin\openssl.exe"
+        wget -O frp.zip https://github.com/fatedier/frp/releases/download/v0.30.0/frp_0.30.0_windows_386.zip
+        7z e frp.zip
+        ls
+        # 
         # cmake -DOPENSSL_CRYPTO_LIBRARY=%OPENSSL_ROOT_DIR%\lib ..
