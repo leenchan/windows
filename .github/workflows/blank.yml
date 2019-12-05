@@ -11,12 +11,13 @@ jobs:
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
         scoop install openssl frp
+        scoop info openssl
+        scoop info frp
     - name: check
       run: |
         env
         tasklist
         netstat -a
-        scoop info openssl
     - name: main
       run: |
         git clone https://github.com/ntop/n2n.git
