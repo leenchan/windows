@@ -32,7 +32,7 @@ jobs:
         cmake -D OPENSSL_ROOT_DIR=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d -D OPENSSL_CRYPTO_LIBRARY=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d\lib ..
         msbuild edge.vcxproj /t:Build /p:Configuration=Release
         msbuild supernode.vcxproj /t:Build /p:Configuration=Release
-        dir /a D:\
+        ls D:\
     - uses: actions/upload-artifact@master
       with:
         name: Upload
