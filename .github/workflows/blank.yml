@@ -26,3 +26,5 @@ jobs:
         md build
         cd build
         cmake -D OPENSSL_ROOT_DIR=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d -D OPENSSL_CRYPTO_LIBRARY=C:\Users\runneradmin\scoop\apps\openssl\1.1.1d\lib ..
+        MSBuild edge.vcxproj /t:Build /p:Configuration=Release
+        MSBuild supernode.vcxproj /t:Build /p:Configuration=Release
