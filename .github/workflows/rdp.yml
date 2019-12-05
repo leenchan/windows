@@ -9,10 +9,22 @@ jobs:
   start:
     runs-on: windows-latest
     steps:
+      - name: Config
+        run: |
+          echo "[common]" >> frpc.ini
+          echo "server_addr = tw.coonhub.com" >> frpc.ini
+          echo "server_port = 7000" >> frpc.ini
+          echo "[3389]" >> frpc.ini
+          echo "type = tcp" >> frpc.ini
+          echo "remote_port = 3389" >> frpc.ini
+          echo "use_encryption = true" >> frpc.ini
+          echo "use_compression = true" >> frpc.ini
+          echo "local_ip = 127.0.0.1" >> frpc.ini
+          echo "local_port = 3389" >> frpc.ini
       - name: Install
         run: |
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install frp
-          frpc -h
+          frpc -c frpc.ini
