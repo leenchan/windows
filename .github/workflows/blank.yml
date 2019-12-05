@@ -16,6 +16,7 @@ jobs:
         env
         tasklist
         netstat -a
+        scoop info openssl
     - name: main
       run: |
         git clone https://github.com/ntop/n2n.git
