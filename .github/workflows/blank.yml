@@ -10,14 +10,9 @@ jobs:
       run: |
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
-        scoop install openssl frp git
+        scoop install openssl frp
         scoop info openssl
         scoop info frp
-        git clone https://github.com/ntop/n2n.git
-        cd n2n
-        md build
-        cd build
-        cmake ..
     - name: check
       run: |
         env
@@ -25,4 +20,9 @@ jobs:
         netstat -a
     - name: main
       run: |
-        ##
+        ls C:\Users\runneradmin\scoop\apps\openssl\1.1.1d
+        git clone https://github.com/ntop/n2n.git
+        cd n2n
+        md build
+        cd build
+        cmake ..
