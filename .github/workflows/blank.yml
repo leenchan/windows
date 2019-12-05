@@ -10,9 +10,10 @@ jobs:
       run: |
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
-        scoop install openssl frp
+        scoop install openssl frp vswhere
         scoop info openssl
         scoop info frp
+        vswhere
     - name: check
       run: |
         env
