@@ -3,7 +3,7 @@ name: RDP
 on:
   push:
     paths:
-    - '.github/workflows/'
+    - '.github/workflows/rdp.yml'
     
 jobs:
   start:
