@@ -35,4 +35,4 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: Upload
-        path: D:\a\windows\windows\n2n\build\Release
+        path: D:\
