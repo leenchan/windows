@@ -10,7 +10,7 @@ jobs:
       run: |
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
-        scoop install openssl frp
+        scoop install openssl frp git
         scoop info openssl
         scoop info frp
         git clone https://github.com/ntop/n2n.git
