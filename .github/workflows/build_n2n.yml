@@ -1,6 +1,9 @@
 name: Build n2n
 
-on: [push]
+on:
+  push:
+    paths:
+    - '.github/workflows/build_n2n.yml'
 
 jobs:
   testStuffOut:
@@ -24,7 +27,6 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: main
       run: |
-        ls C:\Users\runneradmin\scoop\apps\openssl\1.1.1d
         git clone https://github.com/ntop/n2n.git
         cd n2n
         md build
