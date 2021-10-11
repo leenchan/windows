@@ -9,11 +9,11 @@ jobs:
     steps:
       - name: Init
         env:
-          RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
+          RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
           net user
-          net user runneradmin "$env:RDP_PASSWORD"
+          net user runneradmin "$env:RDP_PASSWD"
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
