@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-      - name: Init
+      - name: Expose Windows RDP
         env:
           RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
@@ -21,4 +21,7 @@ jobs:
           scoop bucket add extras
           scoop install busybox frp
           sh rdp.sh
-          echo "$env:RDP_FRPC_CONF" > frpc.ini
+      - name: Wait
+        shell: bash
+        run:
+          sleep $((3600*6))
