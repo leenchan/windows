@@ -1,10 +1,16 @@
 #!/bin/sh
 
-RDP_PASSWD=${RDP_PASSWD:-_password_}
+RDP_PASSWD_DEFAULT="_password_"
+[ -z "$RDP_PASSWD" ] && RDP_PASSWD="$RDP_PASSWD_DEFAULT"
 FRP_SERVER_HOST=${FRPC_SERVER_HOST:-frp2.freefrp.net}
 FRP_SERVER_PORT=${FRP_SERVER_PORT:-7000}
 FRP_SERVER_TOKEN=${FRP_SERVER_TOKEN:-freefrp.net}
 FRP_REMOTE_PORT=${FRP_REMOTE_PORT:-43389+}
+
+change_password() {
+	net user
+	net user runneradmin "$RDP_PASSWD"
+}
 
 frpc_get_port() {
 	_OK_=0
@@ -54,8 +60,8 @@ start_frpc() {
 	-            Windows RDP             -
 	======================================
 	Address  : ${FRP_SERVER_HOST}:${FRP_REMOTE_PORT}
-	User     : ${USER}
-	Password : ********
+	User     : runneradmin
+	Password : $([ "$RDP_PASSWD" = "$RDP_PASSWD_DEFAULT" ] && echo "$RDP_PASSWD_DEFAULT" || echo "******")
 	EOF
 	frpc -c frpc.ini &
 }
