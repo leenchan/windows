@@ -8,7 +8,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Init
-        shell: cmd
         env:
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
@@ -20,7 +19,7 @@ jobs:
           busybox sh -c 'echo ${RDP_FRPC_CONF} > frpc.ini'
           busybox sh -c 'cat frpc.ini'
           echo "3333"
-          echo "%RDP_FRPC_CONF%"
+          echo "$env:RDP_FRPC_CONF"
       - name: Set User
         env:
           RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
