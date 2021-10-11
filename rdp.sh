@@ -66,4 +66,5 @@ start_frpc() {
 	frpc -c frpc.ini &
 }
 
+change_password
 frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf && start_frpc
