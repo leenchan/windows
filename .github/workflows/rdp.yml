@@ -37,9 +37,6 @@ jobs:
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
           env
-          busybox sh -c 'echo ${RDP_FRPC_CONF} > frpc.ini'
-          echo "frpc conf:"
-          cat frpc.ini
 #          echo "[common]" >> frpc.ini
 #          echo "server_addr = frp2.freefrp.net" >> frpc.ini
 #          echo "server_port = 7000" >> frpc.ini
