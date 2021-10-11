@@ -12,14 +12,14 @@ jobs:
           RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
         run: |
           net user
-          net user runneradmin "$RDP_PASSWORD"
+          net user runneradmin "${RDP_PASSWORD}"
       - name: Config
         env:
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
-          echo "$RDP_FRPC_CONF" > frpc.ini
+          echo "${RDP_FRPC_CONF}" > frpc.ini
           echo "frpc conf:"
-          cat frpc.ini
+          type frpc.ini
 #          echo "[common]" >> frpc.ini
 #          echo "server_addr = frp2.freefrp.net" >> frpc.ini
 #          echo "server_port = 7000" >> frpc.ini
