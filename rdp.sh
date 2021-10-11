@@ -9,7 +9,7 @@ FRP_REMOTE_PORT=${FRP_REMOTE_PORT:-43389+}
 frpc_get_port() {
 	_OK_=0
 	_OFFSET_=20
-	FRP_REMOTE_PORT=$(echo "$1" | tr -d '-+')
+	FRP_REMOTE_PORT=$(echo "$1" | tr -d '\-\+')
 	[ "$FRP_REMOTE_PORT" -ge 1 -a "$FRP_REMOTE_PORT" -le 65535 ] || return 1
 	echo "$1" | grep -q '[-+]$' || _OFFSET_=0
 	echo "$1" | grep -q '[-]$' && FRP_REMOTE_PORT=$((FRP_REMOTE_PORT-_OFFSET_))
