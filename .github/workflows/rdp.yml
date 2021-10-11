@@ -12,10 +12,7 @@ jobs:
       - name: Expose Windows RDP
         env:
           RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
-          RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
-          net user
-          net user runneradmin "$env:RDP_PASSWD"
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
