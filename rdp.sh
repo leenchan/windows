@@ -11,20 +11,20 @@ frpc_get_port() {
 	_OFFSET_=20
 	FRP_REMOTE_PORT=$(echo "$1" | tr -d '\-\+')
 	[ "$FRP_REMOTE_PORT" -ge 1 -a "$FRP_REMOTE_PORT" -le 65535 ] || return 1
-	echo "$1" | grep -q '[-+]$' || _OFFSET_=0
-	echo "$1" | grep -q '[-]$' && FRP_REMOTE_PORT=$((FRP_REMOTE_PORT-_OFFSET_))
+	echo "$1" | grep -Eq '[-+]$' || _OFFSET_=0
+	echo "$1" | grep -Eq '[-]$' && FRP_REMOTE_PORT=$((FRP_REMOTE_PORT-_OFFSET_))
 	while true
 	do
 		[ "$_OFFSET_" -le 0 ] && break
-		echo "[INFO] Checking FRP remote port ${FRP_SERVER_HOST}:${_FRP_REMOTE_PORT_}"
-		curl -skL "${FRP_SERVER_HOST}:${_FRP_REMOTE_PORT_}"
+		echo "[INFO] Checking FRP remote port ${FRP_SERVER_HOST}:${FRP_REMOTE_PORT}"
+		curl -skL "${FRP_SERVER_HOST}:${FRP_REMOTE_PORT}"
 		_CODE_="$?"
 		[ "$_CODE_" = "6" ] && break
 		[ "$_CODE_" = "7" -o "$_CODE_" = "56" ] && _OK_="1" && break
 		_FRP_REMOTE_PORT_=$((FRP_REMOTE_PORT+1))
 		_OFFSET_=$((_OFFSET_-1))
 	done
-	[ "$_OK_" = "1" ] && echo "[OK] Set FRP remote port to: $FRP_REMOTE_PORT" && return 0
+	[ "$_OK_" = "1" ] && echo "[OK] Set FRP remote port to: ${FRP_REMOTE_PORT}" && return 0
 	return 1
 }
 
@@ -49,3 +49,7 @@ frpc_conf() {
 
 frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf
 cat frpc.ini
+echo "-------------------"
+which frpc
+echo "-------------------"
+which frpc.exe
