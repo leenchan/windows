@@ -9,9 +9,13 @@ jobs:
     steps:
       - name: test
         shell: bash
+        env:
+          RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
+          RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
           date
-          ls
+          echo "RDP_PASSWORD: ${RDP_PASSWORD}"
+          echo "RDP_FRPC_CONF: ${RDP_FRPC_CONF}"
       - name: Init
         env:
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
