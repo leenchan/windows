@@ -20,5 +20,5 @@ jobs:
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp
-          ls
+          sh rdp.sh
           echo "$env:RDP_FRPC_CONF" > frpc.ini
