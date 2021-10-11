@@ -21,7 +21,7 @@ frpc_get_port() {
 		_CODE_="$?"
 		[ "$_CODE_" = "6" ] && break
 		[ "$_CODE_" = "7" -o "$_CODE_" = "56" ] && _OK_="1" && break
-		_FRP_REMOTE_PORT_=$((FRP_REMOTE_PORT+1))
+		FRP_REMOTE_PORT=$((FRP_REMOTE_PORT+1))
 		_OFFSET_=$((_OFFSET_-1))
 	done
 	[ "$_OK_" = "1" ] && echo "[OK] Set FRP remote port to: ${FRP_REMOTE_PORT}" && return 0
@@ -47,4 +47,16 @@ frpc_conf() {
 	EOF
 }
 
-frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf && frpc -c frpc.ini
+start_frpc() {
+	cat <<-EOF
+	======================================
+	-            Windows RDP             -
+	======================================
+	Address  : ${FRP_SERVER_HOST}:${FRP_REMOTE_PORT}
+	User     : ${USER}
+	Password : ********
+	EOF
+	frpc -c frpc.ini
+}
+
+frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf && start_frpc
