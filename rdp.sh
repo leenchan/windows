@@ -17,4 +17,4 @@ frpc_conf() {
 	EOF
 }
 
-frpc_conf
+env
