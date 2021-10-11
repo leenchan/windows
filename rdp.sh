@@ -9,7 +9,7 @@ FRP_REMOTE_PORT=${FRP_REMOTE_PORT:-43389+}
 
 change_password() {
 	net user
-	net user runneradmin "$RDP_PASSWD"
+	net user runneradmin "$RDP_PASSWD" || exit 1
 }
 
 frpc_get_port() {
