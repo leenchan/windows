@@ -23,6 +23,7 @@ jobs:
         env:
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
+          env
           busybox sh -c 'echo ${RDP_FRPC_CONF} > frpc.ini'
           echo "frpc conf:"
           cat frpc.ini
