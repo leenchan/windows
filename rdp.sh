@@ -47,9 +47,4 @@ frpc_conf() {
 	EOF
 }
 
-frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf
-cat frpc.ini
-echo "-------------------"
-which frpc
-echo "-------------------"
-which frpc.exe
+frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf && frpc -c frpc.ini
