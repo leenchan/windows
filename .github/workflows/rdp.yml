@@ -8,6 +8,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Init
+        shell: cmd
         env:
           RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
