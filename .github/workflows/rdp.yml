@@ -18,6 +18,8 @@ jobs:
           busybox sh -c 'date'
           busybox sh -c 'echo ${RDP_FRPC_CONF} > frpc.ini'
           busybox sh -c 'cat frpc.ini'
+          echo "3333"
+          echo "$RDP_FRPC_CONF"
       - name: Set User
         env:
           RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
