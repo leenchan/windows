@@ -7,6 +7,8 @@ jobs:
   start:
     runs-on: windows-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
       - name: Init
         env:
           RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
@@ -18,36 +20,5 @@ jobs:
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp
+          ls
           echo "$env:RDP_FRPC_CONF" > frpc.ini
-          type frpc.ini
-          frpc -c frpc.ini
-      - name: Set User
-        env:
-          RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
-        run: |
-          net user
-          net user runneradmin "${RDP_PASSWORD}"
-      - name: Config
-        env:
-          RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
-        run: |
-          env
-#          echo "[common]" >> frpc.ini
-#          echo "server_addr = frp2.freefrp.net" >> frpc.ini
-#          echo "server_port = 7000" >> frpc.ini
-#          echo "token = freefrp.net" >> frpc.ini
-#          echo "[rdp_43389]" >> frpc.ini
-#          echo "type = tcp" >> frpc.ini
-#          echo "remote_port = 43389" >> frpc.ini
-#          echo "use_encryption = true" >> frpc.ini
-#          echo "use_compression = true" >> frpc.ini
-#          echo "local_ip = 127.0.0.1" >> frpc.ini
-#          echo "local_port = 3389" >> frpc.ini
-      - name: Expose RDP Port
-        run: |
-          frpc -c frpc.ini
-#          Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-#          iwr -useb get.scoop.sh | iex
-#          scoop bucket add extras
-#          scoop install frp
-          
