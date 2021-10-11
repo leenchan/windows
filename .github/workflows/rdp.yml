@@ -15,11 +15,8 @@ jobs:
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp
-          busybox sh -c 'date'
-          busybox sh -c 'echo ${RDP_FRPC_CONF} > frpc.ini'
-          busybox sh -c 'cat frpc.ini'
-          echo "3333"
-          echo "$env:RDP_FRPC_CONF"
+          echo "$env:RDP_FRPC_CONF" > frpc.ini
+          type frpc.ini
       - name: Set User
         env:
           RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
