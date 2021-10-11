@@ -1,9 +1,7 @@
 name: RDP
 
 on:
-  push:
-    paths:
-    - '.github/workflows/rdp.yml'
+  workflow_dispatch:
     
 jobs:
   start:
@@ -16,11 +14,12 @@ jobs:
       - name: Config
         run: |
           echo "[common]" >> frpc.ini
-          echo "server_addr = tw.coonhub.com" >> frpc.ini
+          echo "server_addr = frp2.freefrp.net" >> frpc.ini
           echo "server_port = 7000" >> frpc.ini
-          echo "[3389]" >> frpc.ini
+          echo "token = freefrp.net" >> frpc.ini
+          echo "[rdp_43389]" >> frpc.ini
           echo "type = tcp" >> frpc.ini
-          echo "remote_port = 3389" >> frpc.ini
+          echo "remote_port = 43389" >> frpc.ini
           echo "use_encryption = true" >> frpc.ini
           echo "use_compression = true" >> frpc.ini
           echo "local_ip = 127.0.0.1" >> frpc.ini
