@@ -13,6 +13,7 @@ jobs:
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp
+          busybox sh -c 'date'
       - name: Set User
         env:
           RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
