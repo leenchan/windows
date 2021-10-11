@@ -8,12 +8,16 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Init
+        env:
+          RDP_FRPC_CONF: ${{ secrets.RDP_FRPC_CONF }}
         run: |
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp
           busybox sh -c 'date'
+          busybox sh -c 'echo ${RDP_FRPC_CONF} > frpc.ini'
+          busybox sh -c 'cat frpc.ini'
       - name: Set User
         env:
           RDP_PASSWORD: ${{ secrets.RDP_PASSWORD }}
