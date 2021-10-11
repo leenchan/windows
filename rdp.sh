@@ -48,6 +48,7 @@ frpc_conf() {
 }
 
 start_frpc() {
+	[ -z "$(frpc -v)" ] && return 1
 	cat <<-EOF
 	======================================
 	-            Windows RDP             -
@@ -56,7 +57,7 @@ start_frpc() {
 	User     : ${USER}
 	Password : ********
 	EOF
-	frpc -c frpc.ini
+	frpc -c frpc.ini &
 }
 
 frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf && start_frpc
