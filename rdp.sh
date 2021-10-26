@@ -66,5 +66,10 @@ start_frpc() {
 	frpc -c frpc.ini &
 }
 
+start_n2n() {
+	aria2c https://swupdate.openvpn.org/community/releases/OpenVPN-2.5.4-I604-amd64.msi
+	msiexec.exe /i OpenVPN-2.5.4-I604-amd64.msi /qn
+}
+
 change_password
 frpc_get_port "${FRP_REMOTE_PORT}" && frpc_conf && start_frpc
