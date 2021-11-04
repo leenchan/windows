@@ -2,7 +2,10 @@ name: RDP
 
 on:
   workflow_dispatch:
-    
+
+env:
+  MORE_DISK_SPACE: true
+
 jobs:
   start:
     runs-on: windows-latest
@@ -18,6 +21,17 @@ jobs:
           scoop bucket add extras
           scoop install busybox frp aria2
           sh rdp.sh
+      - name: More disk space
+        run: |
+          rd /s /q "C:\msys64"
+          rd /s /q "C:\hostedtoolcache"
+          rd /s /q "C:\Program Files (x86)\Android"
+          rd /s /q "C:\Program Files (x86)\Google"
+          rd /s /q "C:\Program Files (x86)\Microsoft SDKs"
+          rd /s /q "C:\Program Files (x86)\Windows Kits"
+          for /d %G in ("C:\Program Files (x86)\Microsoft Visual Studio*") do rd /s /q "%~G"
+        shell: cmd
+        if: env.MORE_DISK_SPACE == 'true'
       - name: Wait
         shell: bash
         run:
