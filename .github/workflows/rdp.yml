@@ -20,8 +20,6 @@ jobs:
           RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
         run: |
           echo $env:UserName
-          ;; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-          ;; irm get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp aria2
           sh rdp.sh
