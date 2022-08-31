@@ -16,6 +16,7 @@ jobs:
         env:
           RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
         run: |
+          echo $env:UserName
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
