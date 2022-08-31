@@ -12,13 +12,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
+#       - uses: brechtm/setup-scoop@v2
+#         with:
+#           scoop_update: 'false'
       - name: Expose Windows RDP
         env:
           RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
         run: |
           echo $env:UserName
-          Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-          iwr -useb https://raw.githubusercontent.com/ScoopInstaller/Install/master/install.ps1 | iex
+          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+          irm get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp aria2
           sh rdp.sh
