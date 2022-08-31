@@ -18,6 +18,7 @@ jobs:
         run: |
           echo $env:UserName
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           iwr -useb get.scoop.sh | iex
           scoop bucket add extras
           scoop install busybox frp aria2
