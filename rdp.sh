@@ -5,7 +5,7 @@ RDP_PASSWD_DEFAULT="_Password_"
 FRP_SERVER_PORT=${FRP_SERVER_PORT:-7000}
 FRP_REMOTE_PORT=${FRP_REMOTE_PORT:-43389+}
 
-[ -z "$FRPC_SERVER_HOST" ] && {
+[ -z "$FRP_SERVER_HOST" ] && {
 	FRP_SERVER_HOST="frp3.freefrp.net"
 	FRP_SERVER_TOKEN="freefrp.net"
 }
