@@ -18,6 +18,10 @@ jobs:
       - name: Expose Windows RDP
         env:
           RDP_PASSWD: ${{ secrets.RDP_PASSWD }}
+          FRPC_SERVER_HOST: ${{ secrets.FRPC_SERVER_HOST }}
+          FRP_SERVER_PORT: ${{ secrets.FRP_SERVER_PORT }}
+          FRP_SERVER_TOKEN: ${{ secrets.FRP_SERVER_TOKEN }}
+          FRP_REMOTE_PORT: ${{ secrets.FRP_REMOTE_PORT }}
         run: |
           echo $env:UserName
           scoop bucket add extras
