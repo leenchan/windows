@@ -34,6 +34,7 @@ frpc_get_port() {
 		_OFFSET_=$((_OFFSET_-1))
 	done
 	[ "$_OK_" = "1" ] && echo "[OK] Set FRP remote port to: ${FRP_REMOTE_PORT}" && return 0
+	echo "[ERR] Faile to test frp server host / remote port."
 	return 1
 }
 
