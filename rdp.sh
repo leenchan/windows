@@ -31,11 +31,12 @@ frpc_get_port() {
 	while true
 	do
 		[ "$_OFFSET_" -le 0 ] && break
-		echo "[INFO] Checking FRP remote port ${FRP_SERVER_HOST}:${FRP_REMOTE_PORT}"
+		
 		curl -skL "${FRP_SERVER_HOST}:${FRP_REMOTE_PORT}"
 		_CODE_="$?"
 		[ "$_CODE_" = "6" ] && break
 		[ "$_CODE_" = "7" -o "$_CODE_" = "56" ] && _REMOTE_PORT_="$FRP_REMOTE_PORT" && break
+  		echo "[INFO] Not a valid FRP remote port ${FRP_SERVER_HOST}:${FRP_REMOTE_PORT} (CODE:${_CODE_})"
 		FRP_REMOTE_PORT=$((FRP_REMOTE_PORT+1))
 		_OFFSET_=$((_OFFSET_-1))
 	done
